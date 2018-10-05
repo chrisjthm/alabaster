@@ -44,3 +44,14 @@ def add_item(username):
 def get_user():
     client = ABMongoClient.ABMongoClient('localhost', 27017)
     return dumps(client.get_user(request.args['username']))
+
+
+@app.route("/users/<username>/items", methods=['GET'])
+def get_item(username):
+    query = {"user": username}
+    if 'name' in request.args:
+        query["name"] = request.args["name"]
+    if 'link' in request.args:
+        query["link"] = request.args["link"]
+    client = ABMongoClient.ABMongoClient('localhost', 27017)
+    return dumps(client.get_items(query))

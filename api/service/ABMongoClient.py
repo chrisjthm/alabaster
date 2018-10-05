@@ -2,6 +2,7 @@ from pymongo import MongoClient
 
 import datetime
 
+
 class ABMongoClient:
 
     def __init__(self, host, port):
@@ -40,3 +41,7 @@ class ABMongoClient:
     def get_item(self, user, item):
         items = self.db.items
         return items.find_one({"id": user + item})
+
+    def get_items(self, query):
+        items = self.db.items
+        return items.find(query)
