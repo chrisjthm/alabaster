@@ -24,6 +24,19 @@ class ABMongoClient:
         users = self.db.users
         return users.insert_one(doc).inserted_id
 
+    def add_item(self, item):
+        doc = item.to_dict()
+        if self.get_item(doc["user"], doc["name"]):
+            raise ValueError("Item " + doc["name"] + " already exists for user " + doc["user"])
+        doc['inUTC'] = datetime.datetime.utcnow()
+        doc['version'] = 1
+        items = self.db.items
+        return items.insert_one(doc).inserted_id
+
     def get_user(self, username):
         users = self.db.users
         return users.find_one({"username": username})
+
+    def get_item(self, user, item):
+        items = self.db.items
+        return items.find_one({"id": user + item})

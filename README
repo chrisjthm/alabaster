@@ -1,0 +1,9 @@
+To run flask app:
+FLASK_APP=./api/api.py flask run
+
+Add a user:
+curl -XPOST -H "Content-Type: application/json" http://localhost:5000/users -d '{"username": "testuser"}'
+
+Add an item:
+curl -XPOST -H "Content-Type: application/json" http://localhost:5000/users/testuser/items -d '{"name": "testitem", "link": "testitem.com"}'
+

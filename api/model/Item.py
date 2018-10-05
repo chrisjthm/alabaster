@@ -1,6 +1,8 @@
 class Item:
 
-    def __init__(self, name, link):
+    def __init__(self, user, name, link):
+        self.id = user + name
+        self.user = user
         self.name = name
         self.link = link
         self.claimed = False
@@ -13,6 +15,8 @@ class Item:
 
     def to_dict(self):
         doc = {}
+        doc['id'] = self.id
+        doc['user'] = self.user
         doc['name'] = self.name
         doc['link'] = self.link
         doc['claimed'] = self.claimed
