@@ -1,3 +1,8 @@
+First make sure docker is running
+
+Start mongo:
+./startMongo.sh
+
 To run flask app:
 FLASK_APP=./api/api.py flask run
 
@@ -5,5 +10,15 @@ Add a user:
 curl -XPOST -H "Content-Type: application/json" http://localhost:5000/users -d '{"username": "testuser"}'
 
 Add an item:
-curl -XPOST -H "Content-Type: application/json" http://localhost:5000/users/testuser/items -d '{"name": "testitem", "link": "testitem.com"}'
+curl -XPOST -H "Content-Type: application/json" http://localhost:5000/users/testuser2/items -d '{"name": "testitem2", "link": "testitem.com"}'
 
+Claim an item:
+curl -XPUT -H "Content-Type: application/json" http://localhost:5000/users/testuser2/items/testitem2 -d '{"claimed": "true"}'
+
+curl -XPOST -H "Content-Type: application/json" http://localhost:5000/users/testuser2/items -d '{"name": "testitem", "link": "testitem.com"}'
+
+Start angular:
+cd frontend/alabaster
+ng serve
+
+http://localhost:4200/

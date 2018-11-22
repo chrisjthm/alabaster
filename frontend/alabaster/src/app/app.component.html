@@ -1,0 +1,10 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="card">
+  <ng-container *ngFor="let user of data.users">
+    <div class="user-details">
+      <h2>{{user.username}}</h2>
+    </div>
+  </ng-container>
+</div>
+
+<router-outlet></router-outlet>
